@@ -1,4 +1,4 @@
-import loginPage from '../pages/LoginPage';  // Importation de l'instance unique
+import loginPage from '../pages/Login.page';  // Importation de l'instance unique
 
 describe('Login Test - SauceDemo', () => {
   
