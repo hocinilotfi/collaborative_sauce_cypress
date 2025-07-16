@@ -1,6 +1,9 @@
+/// <reference types="cypress" />
   
  class CheckoutPage { 
   
+
+
      elements = {
         checkoutButton: () => cy.get('[data-test="checkout"]'),
         firstname: () => cy.get('[data-test="firstName"]'),
@@ -10,6 +13,9 @@
         finishButton: () => cy.get('[data-test="finish"]')
         
     }
+
+
+
   
   
   startCheckout(firstName, lastName, postalCode) {
