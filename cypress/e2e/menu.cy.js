@@ -17,4 +17,11 @@ describe("Menu", () => {
         menu.logout();
         cy.url().should('eq', "https://www.saucedemo.com/");
     })
+    
+    it("User accesses about page", () => {
+        menu.goToAbout();
+        cy.origin('https://saucelabs.com', () => {
+            cy.url().should('eq', "https://saucelabs.com/");
+        })
+    })
 })
