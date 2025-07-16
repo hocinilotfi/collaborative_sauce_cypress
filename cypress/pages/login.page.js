@@ -21,11 +21,6 @@ cliqueButton(){
     this.elements.loginButton().click();
 }
 
-accederDashboard(){
-    cy.url().then((url) => {
-            expect(url).to.equal('https://www.saucedemo.com/inventory.html');
-            });
-}
 
 isDisplayedError(){
     this.elements.erreurMessage().should(
@@ -42,4 +37,4 @@ doLogin(username,password){
 
 }
 
-module.exports = new Login();
+export default new Login();
