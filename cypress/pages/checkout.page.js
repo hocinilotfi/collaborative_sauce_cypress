@@ -1,23 +1,19 @@
 /// <reference types="cypress" />
-  
- class CheckoutPage { 
-  
+
+class CheckoutPage {
+
+  elements = {
+    checkoutButton: () => cy.get('[data-test="checkout"]'),
+    firstname: () => cy.get('[data-test="firstName"]'),
+    lastName: () => cy.get('[data-test="lastName"]'),
+    postalCode: () => cy.get('[data-test="postalCode"]'),
+    continueButton: () => cy.get('[data-test="continue"]'),
+    finishButton: () => cy.get('[data-test="finish"]'),
+    pageheader:() =>  cy.get('.complete-header')
+
+  }
 
 
-     elements = {
-        checkoutButton: () => cy.get('[data-test="checkout"]'),
-        firstname: () => cy.get('[data-test="firstName"]'),
-        lastName: () => cy.get('[data-test="lastName"]'),
-        postalCode: () => cy.get('[data-test="postalCode"]'),
-        continueButton: () => cy.get('[data-test="continue"]'),
-        finishButton: () => cy.get('[data-test="finish"]')
-        
-    }
-
-
-
-  
-  
   startCheckout(firstName, lastName, postalCode) {
     this.elements.checkoutButton().click();
     this.elements.firstname().type(firstName);
@@ -28,8 +24,8 @@
   }
 
   verifyCheckoutComplete() {
-    cy.get('.complete-header').should('contain', 'Thank you');
+  this.elements.pageheader().should('contain', 'Thank you');
   }
 }
 
-export default new  CheckoutPage();
+export default new CheckoutPage();
