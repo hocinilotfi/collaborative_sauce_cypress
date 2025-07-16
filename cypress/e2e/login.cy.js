@@ -1,24 +1,23 @@
-import LoginPage from '../pages/LoginPage';
-
-const loginPage = new LoginPage();
+import loginPage from '../pages/LoginPage';  // Importation de l'instance unique
 
 describe('Login Test - SauceDemo', () => {
+  
   beforeEach(() => {
-    loginPage.visit();
+    loginPage.visit();  // Utilisation de l'instance existante
   });
 
-  it('1️⃣ should login with valid credentials', () => {
+  it('should successfully login with valid credentials and redirect to inventory page', () => {
     loginPage.login('standard_user', 'secret_sauce');
     cy.url().should('include', '/inventory.html');
   });
 
-  it('2️⃣ should show error for invalid username', () => {
+  it('should display error when an invalid username is entered with a valid password', () => {
     loginPage.login('wrong_user', 'secret_sauce');
     loginPage.getErrorMessage().should('be.visible')
       .and('contain', 'Username and password do not match');
   });
 
-  it('3️⃣ should show error for invalid password', () => {
+  it('should display error when an invalid password is entered with a valid username', () => {
     loginPage.login('standard_user', 'wrong_password');
     loginPage.getErrorMessage().should('be.visible')
       .and('contain', 'Username and password do not match');

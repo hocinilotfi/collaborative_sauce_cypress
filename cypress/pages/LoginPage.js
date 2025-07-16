@@ -4,15 +4,15 @@ class LoginPage {
   }
 
   fillUsername(username) {
-    cy.get('#user-name').type(username);
+    cy.get('#user-name').should('be.visible').type(username);
   }
 
   fillPassword(password) {
-    cy.get('#password').type(password);
+    cy.get('#password').should('be.visible').type(password);
   }
 
   clickLogin() {
-    cy.get('#login-button').click();
+    cy.get('#login-button').should('be.visible').click();
   }
 
   login(username, password) {
@@ -26,4 +26,6 @@ class LoginPage {
   }
 }
 
-export default LoginPage;
+// Création d'une instance de la classe et exportation
+const loginPage = new LoginPage();
+export default loginPage;
