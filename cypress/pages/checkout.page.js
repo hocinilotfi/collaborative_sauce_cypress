@@ -17,3 +17,5 @@
     cy.get('.complete-header').should('contain', 'Thank you');
   }
 }
+
+export default new  CheckoutPage();
