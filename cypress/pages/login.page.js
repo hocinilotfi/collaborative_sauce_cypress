@@ -27,7 +27,7 @@ accederDashboard(){
             });
 }
 
-genererErreur(){
+isDisplayedError(){
     this.elements.erreurMessage().should(
             'have.text',
             'Epic sadface: Username and password do not match any user in this service'
@@ -43,4 +43,3 @@ doLogin(username,password){
 }
 
 module.exports = new Login();
-export default Login;
