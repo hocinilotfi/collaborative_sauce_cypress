@@ -50,3 +50,5 @@ class PanierPage{
     }
 
 }
+
+export default new PanierPage();
