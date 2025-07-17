@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { panierPage } from '../page/panier.page'
+import { panierPage } from '../pages/panier.page.js'
 
 describe('Tests sur la page Panier', () => {
 
