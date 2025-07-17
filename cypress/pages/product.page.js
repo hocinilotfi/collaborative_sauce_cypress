@@ -1,27 +1,26 @@
 export class ProductPage {
-  visitLoginPage() {
-    cy.visit('https://www.saucedemo.com/');
-  }
+  //  Tous les locators sont ici, en haut du fichier
+  backpackTitle = '.inventory_item_name';
+  productName = '.inventory_details_name';
+  addToCartButton = '[data-test="add-to-cart"]';
+  backToProductsButton = '[data-test="back-to-products"]';
 
-  login() {
-    cy.get('[data-test="username"]').type('standard_user');
-    cy.get('[data-test="password"]').type('secret_sauce');
-    cy.get('[data-test="login-button"]').click();
-  }
+  // Méthodes d'action
 
   clickOnBackpack() {
-    cy.contains('.inventory_item_name', 'Sauce Labs Backpack').click();
+    cy.contains(this.backpackTitle, 'Sauce Labs Backpack').click();
   }
 
   getProductTitle() {
-    return cy.get('.inventory_details_name');
+    return cy.get(this.productName);
   }
 
   getAddToCartButton() {
-    return cy.get('[data-test="add-to-cart"]');
+    return cy.get(this.addToCartButton);
   }
 
   clickBackToProducts() {
-    cy.get('[data-test="back-to-products"]').click();
+    cy.get(this.backToProductsButton).click();
   }
 }
+
