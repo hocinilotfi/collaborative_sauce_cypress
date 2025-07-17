@@ -1,3 +1,6 @@
+
+
+
 class ProductPage {
   
   backpackTitle = '.inventory_item_name';
@@ -25,3 +28,6 @@ class ProductPage {
 }
 
 export const productPage = new ProductPage();
+
+
+
