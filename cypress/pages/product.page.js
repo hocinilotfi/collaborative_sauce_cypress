@@ -1,11 +1,11 @@
 export class ProductPage {
-  //  Tous les locators sont ici, en haut du fichier
+  
   backpackTitle = '.inventory_item_name';
   productName = '.inventory_details_name';
   addToCartButton = '[data-test="add-to-cart"]';
   backToProductsButton = '[data-test="back-to-products"]';
 
-  // Méthodes d'action
+
 
   clickOnBackpack() {
     cy.contains(this.backpackTitle, 'Sauce Labs Backpack').click();
@@ -24,3 +24,4 @@ export class ProductPage {
   }
 }
 
+export const productPage = new ProductPage();
