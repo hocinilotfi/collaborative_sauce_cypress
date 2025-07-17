@@ -1,20 +1,20 @@
 /// <reference types="cypress" />
 
-import MenuPage from "../pages/menu.page"
-import loginPage from "../pages/login.page"
+import loginPage from "../pages/login.page";
+import menuPage from "../pages/menu.page";
 
-describe('[@menu] Test Menu', ()=>{
+describe(' Test Menu',{ tags: ['menu']}, ()=>{
     beforeEach(() => {
 
-    loginPage.visit();
+    cy.visit("https://www.saucedemo.com/");
     loginPage.doLogin('standard_user', 'secret_sauce');
   });
-  it(' [@menu] les éléments de menu doivent etre visible',()=> {
+  it(' les éléments de menu doivent etre visible',{tags : ['menu' , 'visibilite']}, ()=> {
         cy.get('#react-burger-menu-btn').click();
-        MenuPageenuPage.elements.allItem().should('be.visible');
-        MenuPage.elements.about().should('be.visible');
-        MenuPage.elements.logout().should('be.visible');
-        MenuPageenuPage.elements.reset().should('be.visible');
+        menuPage.elements.allItem().should('be.visible');
+        menuPage.elements.about().should('be.visible');
+        menuPage.elements.logout().should('be.visible');
+        menuPage.elements.reset().should('be.visible');
 
 
   });
