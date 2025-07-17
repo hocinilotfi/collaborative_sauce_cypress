@@ -1,4 +1,4 @@
-export class ProductPage {
+class ProductPage {
   
   backpackTitle = '.inventory_item_name';
   productName = '.inventory_details_name';
