@@ -51,4 +51,4 @@ class PanierPage{
 
 }
 
-export default new PanierPage();
+export const panierPage = new PanierPage();
