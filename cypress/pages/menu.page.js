@@ -2,8 +2,6 @@
 
 class Menu {
     elements = {
-        burgerIcon: ()=> cy.get("#react-burger-menu-btn"),
-        closeIcon: ()=> cy.get("#react-burger-cross-btn"),
         allItem: ()=>  cy.get("#inventory_sidebar_link"),
         about: ()=> cy.get("#about_sidebar_link"),
         logout: ()=> cy.get("#logout_sidebar_link"),
