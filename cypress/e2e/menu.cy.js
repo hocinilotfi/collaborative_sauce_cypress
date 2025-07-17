@@ -11,7 +11,7 @@ describe("Dashboard Menu", () => {
         menu.ouvrir();
     })
 
-    it("should go to about page", {tags : ['Menu','About','US-13','TC-33']}, () => {
+    it("should go to about page", {tags : ['menu','about','us-13','tc-33']}, () => {
         menu.cliqueMenuAbout();
         aboutPage.isPageReachableAndVisible(urls.aboutURL);
     })
