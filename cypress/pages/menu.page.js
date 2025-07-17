@@ -22,7 +22,7 @@ class Menu {
     }
 
     cliqueReset(){
-        this.elements.logout().click();
+        this.elements.reset().click();
     }
 
 }
