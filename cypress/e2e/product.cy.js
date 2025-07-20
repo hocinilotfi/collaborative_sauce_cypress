@@ -1,11 +1,11 @@
-import login from '../pages/login.page';
+import loginPage from '../pages/login.page';
 import { productPage } from '../pages/product.page';
 
 describe('Tests de la page produit', { tags: ['@tc-013', '@product', '@smoke', '@regression'] }, () => {
 
   beforeEach(() => {
     cy.visit("https://saucedemo.com");
-    login.doLogin('standard_user', 'secret_sauce');
+    loginPage.doLogin('standard_user', 'secret_sauce');
   });
 
   it('devrait ouvrir la fiche produit après clic sur un produit', { tags: ['@tc013-01', '@details'] }, () => {
