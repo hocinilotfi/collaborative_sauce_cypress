@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import Login from '../pages/login.page'
+import Login from '../pages/login.page.js'
 
 describe('Login avec identifiants valides et invalides', { tags: ['@tc-001', '@login','@smoke','@regression'] }, function () {
 
