@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import Login from '../pages/login.page'
 
-describe('Login avec identifiants valides et invalides', { tags: ['@test', '@login'] }, function () {
+describe('Login avec identifiants valides et invalides', { tags: ['@tc-001', '@login','@smoke','@regression'] }, function () {
 
   before(function () {
     cy.fixture('cridential.json').as('loginData');
