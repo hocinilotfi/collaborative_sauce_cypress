@@ -9,7 +9,7 @@ describe ("Test du Menu avec POM - Saucedemo", () => {
         cy.get('[data-test="login-button"]').click();
     });
 
-    it('verifier le bouton menu' , () => {
+    it('verifier le bouton menu' ,{tags : '@TC-002'}, () => {
         Menu.openMenu();
         cy.url().should('eq','https://www.saucedemo.com/inventory.html')
     })
