@@ -9,6 +9,7 @@ class DashboardPage {
     sortDropdown: () => cy.get(".product_sort_container"),
     ajouterAuPanierBouton: (nomProduit) => cy.get(`[data-test="add-to-cart-${nomProduit}"]`),//sélecteur dynam pour trouver le bouton d’un produit spécif
     retirerDuPanierBouton: (nomProduit) => cy.get(`[data-test="remove-${nomProduit}"]`),
+    productItems: () => cy.get(".inventory_item"),
   };
 
   cliquerSurProduit(nomProduit) {
@@ -47,6 +48,18 @@ class DashboardPage {
   recuperationListPrixProduit() {
     return this.elements.productPrice();
   }
+
+   selectRandomProduct() {
+    return this.elements.productItems().then((products) => {
+      const randomIndex = Math.floor(Math.random() * products.length);
+      return cy.wrap(products[randomIndex]);
+    });
+  }
+   recupererNomProduit(product) {
+    return cy.wrap(product).find(".inventory_item_name").invoke('text').then(text => text.trim());
+  }
+
+  
 
 }
 export default new DashboardPage();
