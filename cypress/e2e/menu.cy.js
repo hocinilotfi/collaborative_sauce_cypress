@@ -39,7 +39,7 @@ describe("Test de la fonctionnalité du menu", () => {
         it("rediriger vers la page 'About' en cliquant sur 'About'", { tags : '@menuAbout'}, () => {
             MenuPage.clickaboutButton()
             cy.origin('https://saucelabs.com', () => {
-                cy.url().should("eq", "https://saucelabs.com/");
+              cy.url().should("eq", "https://saucelabs.com/");
             })
 
         })
