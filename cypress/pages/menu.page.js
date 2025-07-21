@@ -1,32 +1,31 @@
-/// <reference types="cypress" />
+class MenuPage {
 
-class Menu {
     elements = {
-        burgerIcon: ()=> cy.get("#react-burger-menu-btn"),
-        closeIcon: ()=> cy.get("#react-burger-cross-btn"),
-        allItem: ()=>  cy.get("#inventory_sidebar_link"),
-        about: ()=> cy.get("#about_sidebar_link"),
-        logout: ()=> cy.get("#logout_sidebar_link"),
-        reset: ()=> cy.get('#reset_sidebar_link')
+        allItemsMenuButton: () => cy.get("#inventory_sidebar_link"),
+        aboutButton: () => cy.get("#about_sidebar_link"),
+        logoutButton: () => cy.get("#logout_sidebar_link"),
+        resetAppStateButton: () => cy.get("#reset_sidebar_link"),
+        menuCloseButton: () => cy.get("#react-burger-cross-btn"),
     }
 
-    //actions
-    cliqueMenuAllItem(){
-        this.elements.allItem().click();
+    clickallItemsMenuButton() {
+        this.elements.allItemsMenuButton().click();
+    }
+    clickaboutButton() {
+        this.elements.aboutButton().click();
+    }
+    clicklogoutButton() {
+        this.elements.logoutButton().click();
+    }
+    clickresetAppStateButton() {
+        this.elements.resetAppStateButton().click();
     }
 
-    cliqueMenuAbout(){
-        this.elements.about().click();
+    clickmenuCloseButton() {
+        this.elements.menuCloseButton().click();
     }
 
-    cliqueLogout(){
-        this.elements.logout().click();
-    }
-
-    cliqueReset(){
-        this.elements.logout().click();
-    }
 
 }
 
-export default new Menu();
+export default new MenuPage;
