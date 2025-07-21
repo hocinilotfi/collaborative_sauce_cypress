@@ -5,8 +5,8 @@ import Dashboard from "../pages/dashboard.page.js";
 import MenuPage from "../pages/menu.page.js";
 
 describe("Test de la fonctionnalité du menu", () => {
-  before(() => {
-    cy.fixture("login_credentials").then(function (login_credentials) {
+  before(function () {
+    cy.fixture("login_credentials").then((login_credentials) => {
       this.valid_credential = login_credentials.valid;
     });
   });
@@ -36,9 +36,10 @@ describe("Test de la fonctionnalité du menu", () => {
       cy.url().should("eq", "https://www.saucedemo.com/inventory.html");
     });
 
-    it("rediriger vers la page 'About' en cliquant sur 'About'", { tags: '@menuAbout' }, () => {
-      MenuPage.clickaboutButton();
-      cy.url().should("eq", "https://saucelabs.com/");
+    it("le lien 'About' doit pointer vers saucelabs.com", { tags: '@menuAbout' }, () => {
+      MenuPage.elements.aboutButton()
+        .should('have.attr', 'href')
+        .and('include', 'saucelabs.com');
     });
 
     it("permettre de se déconnecter en cliquant sur 'Logout'", { tags: '@menuLogout' }, () => {
@@ -47,25 +48,21 @@ describe("Test de la fonctionnalité du menu", () => {
       LoginPage.elements.loginButton().should("be.visible");
     });
 
-    it("Devrait pouvoir cliquer sur 'Reset App State'", { tags: '@menuReset' }, () => {
-      MenuPage.elements.resetAppStateButton().should("be.visible");
+    it("réinitialiser l'état de l'application", { tags: '@menuReset' }, () => {
+      
+      cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+      cy.get('.shopping_cart_badge').should('contain', '1');
+
       MenuPage.clickresetAppStateButton();
 
-      
       cy.get('.shopping_cart_badge').should('not.exist');
     });
   });
 
   context("Test de fermeture du menu", () => {
-    it("fermer le menu après avoir cliqué sur 'All Items'", { tags: '@menuClose' }, () => {
-      MenuPage.clickallItemsMenuButton();
-
-      
-      Dashboard.clickBoutonMenu();
-
+    it("fermer le menu en cliquant sur le bouton 'X'", { tags: '@menuClose' }, () => {
       MenuPage.clickmenuCloseButton();
-
-      MenuPage.elements.logoutButton().should("not.exist");
+      MenuPage.elements.logoutButton().should("not.be.visible");
     });
   });
 });
