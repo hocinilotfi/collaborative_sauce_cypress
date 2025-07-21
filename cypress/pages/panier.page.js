@@ -2,8 +2,9 @@
 
 class PanierPage{
     //locators
-    elements = {
-        remonveBackpackElement: ()=>  cy.get("#remove-sauce-labs-backpack"),
+    constructor (){
+    this.elements = {
+        removeBackpackElement: ()=>  cy.get("#remove-sauce-labs-backpack"),
         removeBikeLightElement: ()=>  cy.get("#remove-sauce-labs-bike-light"),
         removeBoltTshirtElement: ()=>  cy.get("#remove-sauce-labs-bolt-t-shirt"),
         removeFleeceJacketElement: ()=>  cy.get("#remove-sauce-labs-fleece-jacket"),
@@ -14,11 +15,11 @@ class PanierPage{
         continueShoppingElement: ()=>  cy.get("#continue-shopping"),
 
     }
-
+    }
     //actions 
 
-    remonveBackpack(){
-        this.elements.remonveBackpackElement().click();
+    removeBackpack(){
+        this.elements.removeBackpackElement().click();
     }
 
     removeBikeLight(){
