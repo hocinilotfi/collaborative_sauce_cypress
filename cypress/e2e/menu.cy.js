@@ -4,7 +4,7 @@ import LoginPage from "../pages/login.page.js";
 import Dashboard from "../pages/dashboard.page.js";
 import MenuPage from "../pages/menu.page.js";
 
-describe("Test de la fonctionnalité du menu", () => {
+describe("Test de la fonctionnalité du menu", { tags: '@tc-002' } ,() => {
   before(function () {
     cy.fixture("login_credentials").then((login_credentials) => {
       this.valid_credential = login_credentials.valid;
@@ -39,7 +39,7 @@ describe("Test de la fonctionnalité du menu", () => {
     it("le lien 'About' doit pointer vers saucelabs.com", { tags: '@menuAbout' }, () => {
       MenuPage.elements.aboutButton()
         .should('have.attr', 'href')
-        .and('include', 'saucelabs.com');
+        .and('include', 'https://saucelabs.com/');
     });
 
     it("permettre de se déconnecter en cliquant sur 'Logout'", { tags: '@menuLogout' }, () => {
