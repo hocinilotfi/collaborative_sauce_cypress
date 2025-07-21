@@ -1,5 +1,7 @@
 class DashboardPage {
   elements = {
+    //recupere index d'un element sur le dashboard
+    indexProduct: () => cy.get(".inventory_item"),
     //recupère une liste contenant les noms des produits
     productTitle: () => cy.get(".inventory_item_name"),
     //recupère une liste contenant les prix des produits
@@ -7,8 +9,10 @@ class DashboardPage {
     cartNumber: () => cy.get(".shopping_cart_badge"),
     cartIcon: () => cy.get(".shopping_cart_link"),
     sortDropdown: () => cy.get(".product_sort_container"),
-    ajouterAuPanierBouton: (nomProduit) => cy.get(`[data-test="add-to-cart-${nomProduit}"]`),//sélecteur dynam pour trouver le bouton d’un produit spécif
-    retirerDuPanierBouton: (nomProduit) => cy.get(`[data-test="remove-${nomProduit}"]`),
+    //ajouterAuPanierBouton: (nomProduit) => cy.get(`[data-test="add-to-cart-${nomProduit}"]`),//sélecteur dynam pour trouver le bouton d’un produit spécif
+    ajouterAuPanierBouton : (index) =>  cy.get('.inventory_item').eq(index).find('button'),
+    //retirerDuPanierBouton: (nomProduit) => cy.get(`[data-test="remove-${nomProduit}"]`),
+    retirerDuPanierBouton: (index) => cy.get('.inventory_item').eq(index).find('button'),
     productItems: () => cy.get(".inventory_item"),
   };
 
@@ -16,12 +20,12 @@ class DashboardPage {
     this.elements.productTitle().contains(nomProduit).click();
   }
 
-  ajouterProduitAuPanier(nomProduit) {
-    this.elements.ajouterAuPanierBouton(nomProduit).click();
+  ajouterProduitAuPanier(index) {
+    this.elements.ajouterAuPanierBouton(index).click();
   }
 
-  retirerProduitDuPanier(nomProduit) {
-    this.elements.retirerDuPanierBouton(nomProduit).click();
+  retirerProduitDuPanier(index) {
+    this.elements.retirerDuPanierBouton(index).click();
   }
 
   getCartNumber() {
