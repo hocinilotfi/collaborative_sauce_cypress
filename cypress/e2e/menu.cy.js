@@ -61,14 +61,20 @@ describe("Test de la fonctionnalité du menu", { tags: '@tc-002' }, () => {
     });
 
     it("réinitialiser l'état de l'application", { tags: '@menuReset' }, () => {
-
       cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-      cy.get('.shopping_cart_badge').should('contain', '1');
+      cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
+      cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
+
+      cy.get('.shopping_cart_badge').should('contain', '3');
 
       MenuPage.clickresetAppStateButton();
 
       cy.get('.shopping_cart_badge').should('not.exist');
+
+      cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').should('be.visible');
+      cy.get('[data-test="remove-sauce-labs-backpack"]').should('not.exist');
     });
+
   });
 
   context("Test de fermeture du menu", () => {
