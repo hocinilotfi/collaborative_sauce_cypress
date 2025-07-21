@@ -15,7 +15,7 @@ class DashboardPage {
     retirerDuPanierBouton: (index) => cy.get('.inventory_item').eq(index).find('button'),
 
     productItems: () => cy.get(".inventory_item"),
-    menuBouton: () => cy.get("#react-burger-menu-btn"),
+    menuBouton: () => cy.get("#react-burger-menu-btn")
   };
 
   cliquerSurProduit(nomProduit) {
