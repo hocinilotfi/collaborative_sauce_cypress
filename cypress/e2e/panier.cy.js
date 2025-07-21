@@ -12,6 +12,14 @@ describe ('Verifier l ajout ou la suppression d un produit dans le panier',{tags
 
     });
     it('Ajout du produit et verifie qu il est bien ajoutee ', {tags : ['@Ajout','@TC-005']}, () =>{
+        dashboardPage.elements.productItems().then((items) => {
+            const randomIndex = Math.floor(Math.random() * items.length);
+            const selectedItem = items[randomIndex];
+
+            cy.wrap(selectedItem).find('.inventory_item_name').invoke('text').then((nomProduit) => {
+                
+            })
+        })
         dashboardPage.ajouterProduitAuPanier('sauce-labs-backpack');
         dashboardPage.elements.cartNumber().should('have.text','1');
 
