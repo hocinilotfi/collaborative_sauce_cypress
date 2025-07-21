@@ -4,7 +4,7 @@ import LoginPage from "../pages/login.page.js";
 import Dashboard from "../pages/dashboard.page.js";
 import MenuPage from "../pages/menu.page.js";
 
-describe("Test de la fonctionnalité du menu", { tags: '@tc-002' } ,() => {
+describe("Test de la fonctionnalité du menu", { tags: '@tc-002' }, () => {
   before(function () {
     cy.fixture("login_credentials").then((login_credentials) => {
       this.valid_credential = login_credentials.valid;
@@ -14,12 +14,24 @@ describe("Test de la fonctionnalité du menu", { tags: '@tc-002' } ,() => {
   beforeEach(function () {
     const user = this.valid_credential[0];
 
-    cy.visit("https://www.saucedemo.com/");
-    LoginPage.doLogin(user.username, user.password);
-    cy.url().should("eq", "https://www.saucedemo.com/inventory.html");
+    cy.session([user.username, user.password], () => {
+      cy.visit("https://www.saucedemo.com/");
+      LoginPage.doLogin(user.username, user.password);
+      cy.url().should("eq", "https://www.saucedemo.com/inventory.html");
+    });
 
+    cy.visit("https://www.saucedemo.com/inventory.html");
     Dashboard.clickBoutonMenu();
   });
+
+  afterEach(() => {
+    cy.get('body').then(($body) => {
+      if ($body.find('[data-test="logout-sidebar-link"]').length) {
+        MenuPage.clicklogoutButton();
+      }
+    });
+  });
+
 
   context("Vérification des éléments du menu", () => {
     it("afficher tous les éléments du menu", { tags: '@menu' }, () => {
@@ -49,7 +61,7 @@ describe("Test de la fonctionnalité du menu", { tags: '@tc-002' } ,() => {
     });
 
     it("réinitialiser l'état de l'application", { tags: '@menuReset' }, () => {
-      
+
       cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
       cy.get('.shopping_cart_badge').should('contain', '1');
 
