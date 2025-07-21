@@ -5,7 +5,7 @@ import dashboardPage from "../pages/dashboard.page";
 import loginPage from "../pages/login.page";
 import {panierPage}  from "../pages/panier.page";
 
-describe('Checkout test', () => {
+describe('Checkout test', { tags: ['@tc-006', '@regression'] },() => {
   beforeEach(() => {
      cy.visit("https://www.saucedemo.com/")
                loginPage.saisirUsername("standard_user")
@@ -13,7 +13,7 @@ describe('Checkout test', () => {
                loginPage.cliqueButton()
   });
 
-  it('verifier  le checkout step one  ',{tags:'@TC-006-01'}, () => {
+  it('verifier  le checkout step one  ',{tags:'@tc-006-01'}, () => {
     dashboardPage.selectRandomProduct().then((product) => {
       dashboardPage.recupererNomProduit(product).then((nomProduit) => {
         const nomFormate = nomProduit.toLowerCase().replace(/\s+/g, '-');
@@ -28,7 +28,7 @@ describe('Checkout test', () => {
     });
   });
 
-  it('verifier  le checkout step two  ',{tags:'@TC-006-02'}, () => {
+  it('verifier  le checkout step two  ',{tags:'@tc-006-02'}, () => {
     dashboardPage.selectRandomProduct().then((product) => {
       dashboardPage.recupererNomProduit(product).then((nomProduit) => {
         const nomFormate = nomProduit.toLowerCase().replace(/\s+/g, '-');
@@ -45,7 +45,7 @@ describe('Checkout test', () => {
     });
   });
 
-  it('verifier  toutes les etapes de  checkout  ',{tags:'@TC-006'}, () => {
+  it('verifier  toutes les etapes de  checkout  ',{tags:'@e2e'}, () => {
     dashboardPage.selectRandomProduct().then((product) => {
       dashboardPage.recupererNomProduit(product).then((nomProduit) => {
         const nomFormate = nomProduit.toLowerCase().replace(/\s+/g, '-');

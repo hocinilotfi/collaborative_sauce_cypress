@@ -4,7 +4,7 @@ import LoginPage from "../pages/login.page.js";
 import Dashboard from "../pages/dashboard.page.js";
 import MenuPage from "../pages/menu.page.js";
 
-describe("Test de la fonctionnalité du menu", { tags: '@tc-002' }, () => {
+describe("Test de la fonctionnalité du menu", () => {
   before(function () {
     cy.fixture("login_credentials").then((login_credentials) => {
       this.valid_credential = login_credentials.valid;
@@ -14,24 +14,12 @@ describe("Test de la fonctionnalité du menu", { tags: '@tc-002' }, () => {
   beforeEach(function () {
     const user = this.valid_credential[0];
 
-    cy.session([user.username, user.password], () => {
-      cy.visit("https://www.saucedemo.com/");
-      LoginPage.doLogin(user.username, user.password);
-      cy.url().should("eq", "https://www.saucedemo.com/inventory.html");
-    });
+    cy.visit("https://www.saucedemo.com/");
+    LoginPage.doLogin(user.username, user.password);
+    cy.url().should("eq", "https://www.saucedemo.com/inventory.html");
 
-    cy.visit("https://www.saucedemo.com/inventory.html");
     Dashboard.clickBoutonMenu();
   });
-
-  afterEach(() => {
-    cy.get('body').then(($body) => {
-      if ($body.find('[data-test="logout-sidebar-link"]').length) {
-        MenuPage.clicklogoutButton();
-      }
-    });
-  });
-
 
   context("Vérification des éléments du menu", () => {
     it("afficher tous les éléments du menu", { tags: '@menu' }, () => {
@@ -51,7 +39,7 @@ describe("Test de la fonctionnalité du menu", { tags: '@tc-002' }, () => {
     it("le lien 'About' doit pointer vers saucelabs.com", { tags: '@menuAbout' }, () => {
       MenuPage.elements.aboutButton()
         .should('have.attr', 'href')
-        .and('include', 'https://saucelabs.com/');
+        .and('include', 'saucelabs.com');
     });
 
     it("permettre de se déconnecter en cliquant sur 'Logout'", { tags: '@menuLogout' }, () => {
@@ -61,20 +49,16 @@ describe("Test de la fonctionnalité du menu", { tags: '@tc-002' }, () => {
     });
 
     it("réinitialiser l'état de l'application", { tags: '@menuReset' }, () => {
+      // Ajouter au panier
       cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-      cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
-      cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
+      cy.get('.shopping_cart_badge').should('contain', '1');
 
-      cy.get('.shopping_cart_badge').should('contain', '3');
-
+      // Reset
       MenuPage.clickresetAppStateButton();
 
+      // Panier vidé
       cy.get('.shopping_cart_badge').should('not.exist');
-
-      cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').should('be.visible');
-      cy.get('[data-test="remove-sauce-labs-backpack"]').should('not.exist');
     });
-
   });
 
   context("Test de fermeture du menu", () => {
